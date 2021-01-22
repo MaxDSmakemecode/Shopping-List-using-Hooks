@@ -5,7 +5,11 @@ import { faChevronRight, faChevronLeft, faCircle, faCheckCircle, faPlus } from '
 
 const App = () => {
 	// HINT: each "item" in our list names a name, a boolean to tell if its been completed, and a quantity
-	const [items, setItems] = useState([]);
+	const [items, setItems] = useState([
+		{ itemName: "item1", quantity: 1, isSelected: false },
+		{ itemName: "item2", quantity: 3, isSelected: false },
+		{ itemName: "item3", quantity: 2, isSelected: false },
+	]);
 
 	return (
 		<div className='app-background'>
@@ -15,18 +19,18 @@ const App = () => {
 					<FontAwesomeIcon icon={faPlus} />
 				</div>
 				<div className='item-list'>
-					<div className='item-container'>
+					{items.map((item, index) => 					<div className='item-container'>
 						<div className='item-name'>
 							{/* HINT: replace false with a boolean indicating the item has been completed or not */}
 							{false ? (
 								<>
 									<FontAwesomeIcon icon={faCheckCircle} />
-									<span className='completed'>Item 1</span>
+									<span className='completed'>{item.itemName}</span>
 								</>
 							) : (
 								<>
 									<FontAwesomeIcon icon={faCircle} />
-									<span>Item 1</span>
+									<span>{item.itemName}</span>
 								</>
 							)}
 						</div>
@@ -34,12 +38,13 @@ const App = () => {
 							<button>
 								<FontAwesomeIcon icon={faChevronLeft} />
 							</button>
-							<span> 1 </span>
+							<span>{item.quantity}</span>
 							<button>
 								<FontAwesomeIcon icon={faChevronRight} />
 							</button>
 						</div>
-					</div>
+					</div>)}
+
 				</div>
 				<div className='total'>Total: 6</div>
 			</div>
